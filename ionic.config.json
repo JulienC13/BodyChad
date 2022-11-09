@@ -1,0 +1,7 @@
+{
+  "name": "BodyChad",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
