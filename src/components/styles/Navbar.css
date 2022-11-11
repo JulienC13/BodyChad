@@ -1,0 +1,29 @@
+* {
+  --main-bg-color: #dc965a;
+  --sec-bg-color: #b98050;
+}
+.btn:hover {
+  transition: 0.3s ease-out;
+  transform: scale(0.9);
+}
+.nav {
+  position: fixed;
+  display: flex;
+  height: 200px;
+  width: 100%;
+  z-index: 2;
+  background-color: var(--sec-bg-color);
+  align-items: center;
+  justify-content: space-around;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.40));
+}
+.nav-logo {
+  height: 100px;
+  width: 80px;
+  cursor: pointer;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.40));
+}
+.icon{
+  cursor: pointer;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.40));
+}

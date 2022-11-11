@@ -1,0 +1,63 @@
+:root {
+  --main-bg-color: #dc965a;
+  --sec-bg-color: #b98050;
+}
+.session-container {
+  margin: 10% auto 5%;
+  width: 400px;
+  padding: 50px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  background-color: var(--sec-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.session-title{
+  padding-bottom: 25px;
+}
+.session-card {
+  padding: 25px;
+  background-color: var(--main-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.session-card-input {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  border: none;
+  background-color: var(--sec-bg-color);
+  color: white;
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.session-card-input:focus {
+  outline: none;
+  border: none;
+  width: 100%;
+  transition: 0.3s ease-out;
+}
+.session-card-input::placeholder{
+  color:rgb(205, 194, 194);
+}
+.session-card-btn {
+  padding: 5px;
+  cursor: pointer;
+  background-color: var(--sec-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.add-session {
+  padding: 10px;
+  cursor: pointer;
+  background-color: var(--main-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.btn:hover {
+  transition: 0.3s ease-out;
+  transform: scale(0.9);
+}

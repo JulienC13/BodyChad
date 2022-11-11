@@ -1,0 +1,26 @@
+:root {
+  --main-bg-color: #dc965a;
+  --sec-bg-color: #b98050;
+}
+.exercices-container {
+  margin: 10% auto 5%;
+  width: 400px;
+  padding: 50px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  background-color: var(--sec-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.exercices-title{
+  padding-bottom: 25px;
+  text-align: center;
+}
+.exercices-muscle{
+  padding: 10px;
+  cursor: pointer;
+  background-color: var(--main-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}

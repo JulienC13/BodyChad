@@ -1,0 +1,48 @@
+:root {
+  --main-bg-color: #dc965a;
+  --sec-bg-color: #b98050;
+}
+.container {
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  padding: 25px;
+  background-color: var(--sec-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.timer-restart{
+  margin-right: 10px;
+}
+.timer-start{
+  cursor: pointer;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.40));
+}
+.timer-stop{
+  margin-right: 20px;
+  cursor: pointer;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.40));
+}
+.timer-app {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  text-align: center;
+  width: 120px;
+  background-color: var(--main-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.timer-container-status {
+  display: flex;
+  justify-content: center;
+}
+.timer-title {
+  text-align: center;
+}
