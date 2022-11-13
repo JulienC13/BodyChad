@@ -31,10 +31,10 @@ export default function MonApp() {
           <h2 className="card-title">Bas du corps</h2>
         </div>
       </div>
-      <AddSession />
+      {/* <AddSession /> */}
       <AddExercices />
-      <StartExercise/>
-      <Timer/>
+      {/* <StartExercise/> */}
+      {/* <Timer/> */}
 
     </>
   );

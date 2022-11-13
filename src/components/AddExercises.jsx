@@ -7,6 +7,7 @@ import Timer from "./Timer";
 import "./styles/Timer.css";
 import { BsPlayCircleFill } from "react-icons/bs";
 import { BsPauseCircleFill } from "react-icons/bs";
+import { ImNext } from "react-icons/im";
 import anvil from "../assets/icon/enclume.png";
 
 let maxSeries = 4;
@@ -96,15 +97,72 @@ let AddExercises = () => {
 
   return (
     <>
-      {/*--------------- AddExercice --------------- */}
-
       <div className="exercice">
+        {/*--------------- AddSession --------------- */}
+
+        <div className="session-container">
+          <h2 className="session-title">Ajouter une séance</h2>
+          <div className="session-card">
+            <h2 className="session-card-title">Nommer la séance</h2>
+            <input
+              type="text"
+              className="session-card-input"
+              placeholder="Nom de la Séance"
+            />
+          </div>
+          <br />
+          <div className="session-card">
+            <h2 className="session-card-title">Ajouter vos exercices</h2>
+            <div className="session-card-btn btn">
+              <IoMdAddCircle size="2.5em" className="icon" />
+            </div>
+          </div>
+          <br />
+          <div className="add-session btn">
+            <h2>Ajouter la séance</h2>
+          </div>
+        </div>
+
+        {/*--------------- AddExercice --------------- */}
+
+        <div className="exercices-container">
+          <h2 className="exercices-title">Selectionner des exercices</h2>
+          <div id="listeexosdispo" className="exercices-muscle">
+            <h3>Exercices dispos</h3>
+            {exercises.map((exercise) => (
+              <div className="exercices-li">
+                {exercise.nom}
+                {addedExercises.find((exo) => exo.id === exercise.id) ? (
+                  <span> &#10003;</span>
+                ) : (
+                  <IoMdAddCircle
+                    size="1.5em"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => addExercise(exercise)}
+                  ></IoMdAddCircle>
+                )}
+              </div>
+            ))}
+            <h3>Exercices ajoutés</h3>
+            <ul className="li-center">
+              {addedExercises.map((exercise) => {
+                return (
+                  <li style={{ paddingBottom: "10px" }}>{exercise.nom}</li>
+                );
+              })}
+            </ul>
+            <button className="btn-validate">Valider</button>
+          </div>
+        </div>
+
+        {/*--------------- Timer --------------- */}
+
         <div className="container">
           <div className="timer-container">
             <h2 className="timer-title">
               {currentExercise === null ? (
                 <span style={{ color: "red" }}>
-                  Tu dois select au moins un exo
+                  Tu dois selectionner au moins un exercice !
                 </span>
               ) : (
                 addedExercises[currentExercise].nom
@@ -125,11 +183,7 @@ let AddExercises = () => {
                 className="timer-start"
                 onClick={start}
               />
-              <BsPlayCircleFill
-                size="2.5em"
-                className="timer-next"
-                onClick={next}
-              />
+              <ImNext size="2.5em" className="timer-next" onClick={next} />
             </div>
             <div className="nb-serie">{series}/4 séries</div>
             <div className="state-container">
@@ -148,34 +202,6 @@ let AddExercises = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div className="exercices-container">
-        <h2 className="exercices-title">Selectionner des exercices</h2>
-        <div id="listeexosdispo" className="exercices-muscle">
-          <h3>Exercices dispos</h3>
-          {exercises.map((exercise) => (
-            <div className="exercices-li">
-              {exercise.nom}
-              {addedExercises.find((exo) => exo.id === exercise.id) ? (
-                <span> &#10003;</span>
-              ) : (
-                <IoMdAddCircle
-                  size="1.5em"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => addExercise(exercise)}
-                ></IoMdAddCircle>
-              )}
-            </div>
-          ))}
-          <h3>Exercices ajoutés</h3>
-          <ul className="li-center">
-            {addedExercises.map((exercise) => {
-              return <li style={{ paddingBottom: "10px" }}>{exercise.nom}</li>;
-            })}
-          </ul>
-          <button className="btn-validate">Valider</button>
         </div>
       </div>
     </>
