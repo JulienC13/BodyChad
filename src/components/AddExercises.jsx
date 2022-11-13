@@ -5,6 +5,7 @@ import { IoMdAddCircle } from "react-icons/io";
 import Timer from "./Timer";
 
 import "./styles/Timer.css";
+import "./styles/StartExercise.css";
 import { BsPlayCircleFill } from "react-icons/bs";
 import { BsPauseCircleFill } from "react-icons/bs";
 import { ImNext } from "react-icons/im";
@@ -14,6 +15,14 @@ let maxSeries = 4;
 let timer;
 
 let AddExercises = () => {
+  /*--------------- AddSession ---------------*/
+  let [titleSession, setTitleSession] = useState("");
+
+  let titleChange = (e) => {
+    setTitleSession(e.target.value);
+    console.log("value : ", e.target.value);
+  };
+
   /*--------------- Timer ---------------*/
   let [seconds, setSeconds] = useState(0);
   let [minutes, setMinutes] = useState(0);
@@ -24,7 +33,10 @@ let AddExercises = () => {
   let [exercises, setExercises] = useState(ALL_EXERCISES_MOCK);
   let [addedExercises, setAddedExercises] = useState([]);
   let [currentExercise, setCurrentExercise] = useState(null);
+  let [isValidate, setIsValidate] = useState(false);
+
   console.log("currentExercise", currentExercise);
+  console.log(isValidate); //state bouton validé
 
   const pause = () => {
     clearInterval(timer);
@@ -53,6 +65,7 @@ let AddExercises = () => {
       setSeries(0);
       if (addedExercises.length > currentExercise + 1) {
         setCurrentExercise((c) => c + 1);
+        //curentExercise est mon ajout de nouveau tableau
       } else {
         alert("Fin de la séance");
       }
@@ -108,6 +121,8 @@ let AddExercises = () => {
               type="text"
               className="session-card-input"
               placeholder="Nom de la Séance"
+              onChange={titleChange}
+              value={titleSession}
             />
           </div>
           <br />
@@ -117,6 +132,19 @@ let AddExercises = () => {
               <IoMdAddCircle size="2.5em" className="icon" />
             </div>
           </div>
+          <br />
+          {isValidate && (
+            <div className="li-container">
+              <h2>Exercices choisis :</h2>
+              <ul className="li-center">
+                {addedExercises.map((exercise) => {
+                  return (
+                    <li style={{ paddingBottom: "10px" }}>{exercise.nom}</li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
           <br />
           <div className="add-session btn">
             <h2>Ajouter la séance</h2>
@@ -151,8 +179,31 @@ let AddExercises = () => {
                 );
               })}
             </ul>
-            <button className="btn-validate">Valider</button>
+            <button
+              className="btn-validate"
+              onClick={() => {
+                setIsValidate(!isValidate);
+              }}
+            >
+              Valider
+            </button>
           </div>
+        </div>
+
+        {/*--------------- Start Exercice --------------- */}
+
+        <div className="container">
+          <div className="start-exercice-container">
+            <h1 className="start-exercice-title">{titleSession}</h1>
+            <ul className="start-exercice-li li-center">
+              {addedExercises.map((exercise) => {
+                return (
+                  <li style={{ paddingBottom: "10px" }}>{exercise.nom}</li>
+                );
+              })}
+            </ul>
+          </div>
+          <BsPlayCircleFill size="4em" className="btn-start" />
         </div>
 
         {/*--------------- Timer --------------- */}
@@ -168,6 +219,7 @@ let AddExercises = () => {
                 addedExercises[currentExercise].nom
               )}
             </h2>
+            <div></div>
             <h2 className="timer-app">
               {minutes < 10 ? "0" + minutes : minutes}:
               {seconds < 10 ? "0" + seconds : seconds}
