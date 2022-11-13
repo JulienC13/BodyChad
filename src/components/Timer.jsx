@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import "./styles/Timer.css";
 import { BsPlayCircleFill } from "react-icons/bs";
 import { BsPauseCircleFill } from "react-icons/bs";
+import AddExercises from "./AddExercises"; //new
+import ALL_EXERCISES_MOCK from "../API/get-tous.json";
+import anvil from "../assets/icon/enclume.png";
 
-const Timer = () => {
+
+const Timer = (props) => {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
 
-  let timer;
+console.log();
 
+  let timer;
   useEffect(() => {
     timer = setInterval(() => {
       setSeconds(seconds + 1);
@@ -41,10 +46,10 @@ const Timer = () => {
   }
 
   return (
-    <div className="timer">
+    <div className="exercice">
       <div className="container">
         <div className="timer-container">
-          <h2 className="timer-title">Minuteur</h2>
+          <h2 className="timer-title">Exercice</h2>
           <h2 className="timer-app">
             {minutes < 10 ? "0" + minutes : minutes}:
             {seconds < 10 ? "0" + seconds : seconds}
@@ -61,10 +66,21 @@ const Timer = () => {
               onClick={start}
             />
           </div>
-          <div className="nb-serie">2 séries</div>
-          <div className="rep-weight-container">
-            <input type="text" value="12" size="1.5rem"/>
-            <label>Répétitions</label>
+          <div className="nb-serie">2/4 séries</div>
+          <div className="state-container">
+            <div className="rep-weight-container">
+              <div>
+                <input type="text" className="input" />
+                <label> Répétitions</label>
+              </div>
+              <br />
+              <br />
+              <div className="weight">
+                <input type="text" className="input" />
+                <label className="padding"> Kg</label>
+                <img src={anvil} alt="Enclume" className="anvil-icon" />
+              </div>
+            </div>
           </div>
         </div>
       </div>

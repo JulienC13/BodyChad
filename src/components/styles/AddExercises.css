@@ -1,0 +1,60 @@
+:root {
+  --main-bg-color: #dc965a;
+  --sec-bg-color: #b98050;
+}
+.li-center {
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+.exercices-container {
+  margin: 10% auto 5%;
+  width: 400px;
+  padding: 50px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  background-color: var(--sec-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.exercices-title {
+  padding-bottom: 25px;
+  text-align: center;
+}
+.exercices-muscle {
+  padding: 10px;
+  background-color: var(--main-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.exercices-li {
+  display: flex;
+  padding-bottom: 30px;
+  justify-content: space-between;
+  align-items: center;
+}
+.btn-add {
+  width: 30px;
+  cursor: pointer;
+  background-color: inherit;
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.btn-validate {
+  height: 50px;
+  width: 150px;
+  padding: 5px;
+  cursor: pointer;
+  background-color: var(--sec-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.btn-validate:hover{
+  transition: 0.3s ease-out;
+  transform: scale(0.9);
+}
+

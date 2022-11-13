@@ -8,6 +8,7 @@
   flex-direction: column;
   align-items: center;
 }
+/*----------------- Timer -----------------*/
 .timer-container {
   display: flex;
   flex-direction: column;
@@ -17,17 +18,22 @@
   border-radius: 30px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
 }
-.timer-restart{
-  margin-right: 10px;
-}
-.timer-start{
+.timer-start {
   cursor: pointer;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.40));
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
 }
-.timer-stop{
+.timer-start:hover{
+  transition: 0.3s ease-out;
+  transform: scale(0.9);
+}
+.timer-stop {
   margin-right: 20px;
   cursor: pointer;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.40));
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
+}
+.timer-stop:hover{
+  transition: 0.3s ease-out;
+  transform: scale(0.9);
 }
 .timer-app {
   margin-left: auto;
@@ -45,4 +51,62 @@
 }
 .timer-title {
   text-align: center;
+}
+/*----------------- Rep&Série -----------------*/
+.state-container {
+  display: flex;
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  padding: 30px;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--main-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.nb-serie {
+  display: flex;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  padding: 15px;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--main-bg-color);
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.input-ser {
+  width: 15px;
+}
+.rep-weight-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: auto;
+}
+.input {
+  width: 30px;
+  padding: 5px;
+  outline: none;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--sec-bg-color);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.weight{
+  display: flex;
+  align-items: center;
+
+}
+.padding{
+  padding-left: 10px;
+}
+.anvil-icon{
+  width: 50px;
+  padding-left: 20px;
 }

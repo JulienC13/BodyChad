@@ -3,8 +3,9 @@ import Navbar from "./Navbar.jsx";
 import top_body from "../assets/img/top_body.png";
 import bot_body from "../assets/img/bot_body.png";
 import AddSession from "./AddSession";
-import AddExercices from "./AddExercices";
+import AddExercices from "./AddExercises";
 import Timer from "./Timer";
+import StartExercise from "./StartExercise";
 
 export default function MonApp() {
   return (
@@ -32,7 +33,9 @@ export default function MonApp() {
       </div>
       <AddSession />
       <AddExercices />
+      <StartExercise/>
       <Timer/>
+
     </>
   );
 }
