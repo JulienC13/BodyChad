@@ -1,28 +1,27 @@
 import React, { useState, useEffect } from "react";
 import "./styles/AddExercises.css";
-import ALL_EXERCISES_MOCK from "../API/get-tous.json";
-import { IoMdAddCircle } from "react-icons/io";
-import Timer from "./Timer";
-
 import "./styles/Timer.css";
 import "./styles/StartExercise.css";
 import { BsPlayCircleFill } from "react-icons/bs";
 import { BsPauseCircleFill } from "react-icons/bs";
 import { ImNext } from "react-icons/im";
 import anvil from "../assets/icon/enclume.png";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  addedExercisesState,
+  currentExerciseState,
+  exercisesState,
+  isValidateState,
+  titleSessionState,
+} from "../recoil";
+import { Link } from "react-router-dom";
 
 let maxSeries = 4;
 let timer;
 
 let AddExercises = () => {
-  /*--------------- AddSession ---------------*/
-  let [titleSession, setTitleSession] = useState("");
-
-  let titleChange = (e) => {
-    setTitleSession(e.target.value);
-    console.log("value : ", e.target.value);
-  };
-
+  /*--------------- AddSeession ---------------*/
+  const [titleSession, setTitleSession] = useRecoilState(titleSessionState);
   /*--------------- Timer ---------------*/
   let [seconds, setSeconds] = useState(0);
   let [minutes, setMinutes] = useState(0);
@@ -30,13 +29,14 @@ let AddExercises = () => {
 
   /*--------------- AddExercice ---------------*/
 
-  let [exercises, setExercises] = useState(ALL_EXERCISES_MOCK);
-  let [addedExercises, setAddedExercises] = useState([]);
-  let [currentExercise, setCurrentExercise] = useState(null);
-  let [isValidate, setIsValidate] = useState(false);
+  const exercises = useRecoilValue(exercisesState);
+  const addedExercises = useRecoilValue(addedExercisesState);
+  const [currentExercise, setCurrentExercise] =
+    useRecoilState(currentExerciseState);
+  const [isValidate] = useRecoilState(isValidateState);
 
   console.log("currentExercise", currentExercise);
-  console.log(isValidate); //state bouton validé
+  console.log("isValidate", isValidate); //state bouton validé
 
   const pause = () => {
     clearInterval(timer);
@@ -90,106 +90,9 @@ let AddExercises = () => {
 
   console.log(exercises[0].cible);
 
-  let addExercise = (exercise) => {
-    //console.log("exercises to add", exercise.nom);
-    // Si il n'existe pas dans la list
-    let exeFind = addedExercises.find((exo) => exo.id === exercise.id);
-    // console.log("exeFind", exeFind);
-    if (exeFind) {
-      // Je ne fais rien
-    } else {
-      // On l'ajoute
-      let myNewExercices = [...addedExercises, exercise];
-      // console.log("mes futurs", myNewExercices);
-      setAddedExercises(myNewExercices);
-      if (currentExercise === null) {
-        setCurrentExercise(0);
-      }
-    }
-  };
-
   return (
     <>
       <div className="exercice">
-        {/*--------------- AddSession --------------- */}
-
-        <div className="session-container">
-          <h2 className="session-title">Ajouter une séance</h2>
-          <div className="session-card">
-            <h2 className="session-card-title">Nommer la séance</h2>
-            <input
-              type="text"
-              className="session-card-input"
-              placeholder="Nom de la Séance"
-              onChange={titleChange}
-              value={titleSession}
-            />
-          </div>
-          <br />
-          <div className="session-card">
-            <h2 className="session-card-title">Ajouter vos exercices</h2>
-            <div className="session-card-btn btn">
-              <IoMdAddCircle size="2.5em" className="icon" />
-            </div>
-          </div>
-          <br />
-          {isValidate && (
-            <div className="li-container">
-              <h2>Exercices choisis :</h2>
-              <ul className="li-center">
-                {addedExercises.map((exercise) => {
-                  return (
-                    <li style={{ paddingBottom: "10px" }}>{exercise.nom}</li>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
-          <br />
-          <div className="add-session btn">
-            <h2>Ajouter la séance</h2>
-          </div>
-        </div>
-
-        {/*--------------- AddExercice --------------- */}
-
-        <div className="exercices-container">
-          <h2 className="exercices-title">Selectionner des exercices</h2>
-          <div id="listeexosdispo" className="exercices-muscle">
-            <h3>Exercices dispos</h3>
-            {exercises.map((exercise) => (
-              <div className="exercices-li">
-                {exercise.nom}
-                {addedExercises.find((exo) => exo.id === exercise.id) ? (
-                  <span> &#10003;</span>
-                ) : (
-                  <IoMdAddCircle
-                    size="1.5em"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => addExercise(exercise)}
-                  ></IoMdAddCircle>
-                )}
-              </div>
-            ))}
-            <h3>Exercices ajoutés</h3>
-            <ul className="li-center">
-              {addedExercises.map((exercise) => {
-                return (
-                  <li style={{ paddingBottom: "10px" }}>{exercise.nom}</li>
-                );
-              })}
-            </ul>
-            <button
-              className="btn-validate"
-              onClick={() => {
-                setIsValidate(!isValidate);
-              }}
-            >
-              Valider
-            </button>
-          </div>
-        </div>
-
         {/*--------------- Start Exercice --------------- */}
 
         <div className="container">
@@ -219,7 +122,7 @@ let AddExercises = () => {
                 addedExercises[currentExercise].nom
               )}
             </h2>
-            <div></div>
+            {/* <img src={addedExercises[currentExercise].img} /> */}
             <h2 className="timer-app">
               {minutes < 10 ? "0" + minutes : minutes}:
               {seconds < 10 ? "0" + seconds : seconds}

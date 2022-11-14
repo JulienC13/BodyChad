@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../assets/img/logo.png";
 import "./styles/Navbar.css";
 import { HiUser } from "react-icons/hi";
@@ -8,10 +9,14 @@ const Navbar = () => {
   return (
     <div className="nav">
       <div className="nav-logo">
-        <img src={logo} alt="logo" />
+        <Link to="/tab1">
+          <img src={logo} alt="logo" />
+        </Link>
       </div>
       <HiUser size="2.5em" className="icon btn" />
-      <IoMdAddCircle size="2.5em" className="icon btn" />
+      <Link to="/tab3" style={{color:"white"}}>
+        <IoMdAddCircle size="2.5em" className="icon btn" />
+      </Link>
     </div>
   );
 };
