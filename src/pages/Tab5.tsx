@@ -1,42 +1,31 @@
-import React, { useState, useEffect } from "react";
-import "./styles/AddExercises.css";
-import "./styles/Timer.css";
-import "./styles/StartExercise.css";
+import { IonContent, IonPage } from "@ionic/react";
+import { Link } from "react-router-dom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  setSecondsState,
+  setMinutesState,
+  setSeriesState,
+  addedExercisesState,
+  currentExerciseState,
+} from "../recoil";
+import Navbar from "../components/Navbar";
+import anvil from "../assets/icon/enclume.png";
 import { BsPlayCircleFill } from "react-icons/bs";
 import { BsPauseCircleFill } from "react-icons/bs";
 import { ImNext } from "react-icons/im";
-import anvil from "../assets/icon/enclume.png";
-import { useRecoilState, useRecoilValue } from "recoil";
-import {
-  addedExercisesState,
-  currentExerciseState,
-  exercisesState,
-  isValidateState,
-  titleSessionState,
-} from "../recoil";
-import { Link } from "react-router-dom";
+import "../components/styles/Timer.css";
+import "../components/styles/AddSession.css";
 
 let maxSeries = 4;
 let timer;
 
-let AddExercises = () => {
-  /*--------------- AddSeession ---------------*/
-  const [titleSession, setTitleSession] = useRecoilState(titleSessionState);
-  /*--------------- Timer ---------------*/
-  let [seconds, setSeconds] = useState(0);
-  let [minutes, setMinutes] = useState(0);
-  let [series, setSeries] = useState(0);
-
-  /*--------------- AddExercice ---------------*/
-
-  const exercises = useRecoilValue(exercisesState);
-  const addedExercises = useRecoilValue(addedExercisesState);
-  const [currentExercise, setCurrentExercise] =
+const Tab5: React.FC = () => {
+  let [seconds, setSeconds] = useRecoilState(setSecondsState);
+  let [minutes, setMinutes] = useRecoilState(setMinutesState);
+  let [series, setSeries] = useRecoilState(setSeriesState);
+  let addedExercises = useRecoilValue(addedExercisesState);
+  let [currentExercise, setCurrentExercise] =
     useRecoilState(currentExerciseState);
-  const [isValidate] = useRecoilState(isValidateState);
-
-  console.log("currentExercise", currentExercise);
-  console.log("isValidate", isValidate); //state bouton validé
 
   const pause = () => {
     clearInterval(timer);
@@ -88,29 +77,10 @@ let AddExercises = () => {
     reloadSerie();
   }
 
-  console.log(exercises[0].cible);
-
   return (
-    <>
-      <div className="exercice">
-        {/*--------------- Start Exercice --------------- */}
-
-        <div className="container">
-          <div className="start-exercice-container">
-            <h1 className="start-exercice-title">{titleSession}</h1>
-            <ul className="start-exercice-li li-center">
-              {addedExercises.map((exercise) => {
-                return (
-                  <li style={{ paddingBottom: "10px" }}>{exercise.nom}</li>
-                );
-              })}
-            </ul>
-          </div>
-          <BsPlayCircleFill size="4em" className="btn-start" />
-        </div>
-
-        {/*--------------- Timer --------------- */}
-
+    <IonPage>
+      <IonContent fullscreen>
+        <Navbar />
         <div className="container">
           <div className="timer-container">
             <h2 className="timer-title">
@@ -122,7 +92,7 @@ let AddExercises = () => {
                 addedExercises[currentExercise].nom
               )}
             </h2>
-            {/* <img src={addedExercises[currentExercise].img} /> */}
+            <img style={{height:"400px"}} src={addedExercises[currentExercise].img}/>
             <h2 className="timer-app">
               {minutes < 10 ? "0" + minutes : minutes}:
               {seconds < 10 ? "0" + seconds : seconds}
@@ -158,9 +128,9 @@ let AddExercises = () => {
             </div>
           </div>
         </div>
-      </div>
-    </>
+      </IonContent>
+    </IonPage>
   );
 };
 
-export default AddExercises;
+export default Tab5;

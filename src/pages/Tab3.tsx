@@ -11,9 +11,9 @@ import { addedExercisesState, isValidateState, titleSessionState } from "../reco
 import Navbar from "../components/Navbar";
 
 const Tab3: React.FC = () => {
-  const [titleSession, setTitleSession] = useRecoilState(titleSessionState);
-  const [isValidate] = useRecoilState(isValidateState);
-  const addedExercises = useRecoilValue(addedExercisesState);
+  let [titleSession, setTitleSession] = useRecoilState(titleSessionState);
+  let [isValidate] = useRecoilState(isValidateState);
+  let [addedExercises, setAddedExercices] = useRecoilState(addedExercisesState);
 
   let titleChange = (e) => {
     setTitleSession(e.target.value);

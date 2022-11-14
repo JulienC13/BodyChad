@@ -6,6 +6,21 @@ export const exercisesState = atom({
   default: ALL_EXERCISES_MOCK,
 });
 
+export const setSecondsState = atom({
+  key: "setSecondsState",
+  default: 0,
+});
+
+export const setMinutesState = atom({
+  key: "setMinutesState",
+  default: 0,
+});
+
+export const setSeriesState = atom({
+  key: "setSeriesState",
+  default: 0,
+});
+
 export const isValidateState = atom({
   key: "isValidateState",
   default: false,
