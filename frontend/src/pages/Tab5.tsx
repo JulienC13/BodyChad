@@ -38,13 +38,19 @@ const Tab5: React.FC = () => {
   const start = () => {
     pause();
     timer = setInterval(() => {
-      setSeconds((seconds) => seconds + 1);
-      if (seconds === 59) {
+      let secondsCopy = seconds;
+
+      setSeconds((seconds) => {
+        secondsCopy = seconds;
+        return seconds + 1;
+      });
+
+      if (secondsCopy > 58) {
+        console.log("2");
+
         setMinutes((minutes) => minutes + 1);
         setSeconds(0);
       }
-
-      return () => clearInterval(timer);
     }, 1000);
   };
 
@@ -89,27 +95,38 @@ const Tab5: React.FC = () => {
                   Tu dois selectionner au moins un exercice !
                 </span>
               ) : (
-                addedExercises[currentExercise].nom
+                <>
+                  {addedExercises[currentExercise].nom}
+
+                  <img
+                    style={{ height: "400px" }}
+                    src={addedExercises[currentExercise].img}
+                  />
+                  <h2 className="timer-app">
+                    {minutes < 10 ? "0" + minutes : minutes}:
+                    {seconds < 10 ? "0" + seconds : seconds}
+                  </h2>
+                  <div className="timer-container-status">
+                    <BsPauseCircleFill
+                      size="2.5em"
+                      className="timer-stop"
+                      onClick={pause}
+                    />
+                    <BsPlayCircleFill
+                      size="2.5em"
+                      className="timer-start"
+                      onClick={start}
+                    />
+                    <ImNext
+                      size="2.5em"
+                      className="timer-next"
+                      onClick={next}
+                    />
+                  </div>
+                </>
               )}
             </h2>
-            <img style={{height:"400px"}} src={addedExercises[currentExercise].img}/>
-            <h2 className="timer-app">
-              {minutes < 10 ? "0" + minutes : minutes}:
-              {seconds < 10 ? "0" + seconds : seconds}
-            </h2>
-            <div className="timer-container-status">
-              <BsPauseCircleFill
-                size="2.5em"
-                className="timer-stop"
-                onClick={pause}
-              />
-              <BsPlayCircleFill
-                size="2.5em"
-                className="timer-start"
-                onClick={start}
-              />
-              <ImNext size="2.5em" className="timer-next" onClick={next} />
-            </div>
+
             <div className="nb-serie">{series}/4 séries</div>
             <div className="state-container">
               <div className="rep-weight-container">
