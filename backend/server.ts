@@ -13,13 +13,13 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/exercises", (req, res) => {
+app.get("/sessions", (req, res) => {
   prisma.exercise.findMany().then((exercises) => {
     res.send(exercises);
   });
 });
 
-app.post("/exercises", (req, res) => {
+app.post("/sessions", (req, res) => {
   prisma.exercise
     .create({
       data: {
@@ -28,6 +28,19 @@ app.post("/exercises", (req, res) => {
     })
     .then((exercise) => {
       res.send(exercise);
+    });
+});
+
+app.post("/sessions", (req, res) => {
+  prisma.repetitionAndWeight
+    .create({
+      data: {
+        repetition: 12,
+        weight: 100,
+      },
+    })
+    .then((repetitionAndWeight) => {
+      res.send(repetitionAndWeight);
     });
 });
 

@@ -19,7 +19,7 @@ import "../components/styles/AddSession.css";
 let maxSeries = 4;
 let timer;
 
-const Tab5: React.FC = () => {
+const StartSession: React.FC = () => {
   let [seconds, setSeconds] = useRecoilState(setSecondsState);
   let [minutes, setMinutes] = useRecoilState(setMinutesState);
   let [series, setSeries] = useRecoilState(setSeriesState);
@@ -150,4 +150,4 @@ const Tab5: React.FC = () => {
   );
 };
 
-export default Tab5;
+export default StartSession;

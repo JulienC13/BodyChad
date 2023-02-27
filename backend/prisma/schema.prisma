@@ -15,7 +15,22 @@ model User {
   name String?
 }
 
+model Workout {
+  id        Int        @id @default(autoincrement())
+  exercises Exercise[]
+  done      Boolean    @default(false)
+}
+
 model Exercise {
   id   Int    @id @default(autoincrement())
   name String
+
+  repetitionsTodo Int
+  weightTodo      Int
+
+  repetitionsDone Int
+  weightDone      Int
+
+  Workout   Workout? @relation(fields: [workoutId], references: [id])
+  workoutId Int?
 }

@@ -11,9 +11,11 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../components/styles/AddExercises.css";
 
-const Tab2: React.FC = (props) => {
-  const [addedExercises, setAddedExercises] = useRecoilState(addedExercisesState);
-  const [currentExercise, setCurrentExercise] = useRecoilState(currentExerciseState);
+const AddExercices: React.FC = (props) => {
+  const [addedExercises, setAddedExercises] =
+    useRecoilState(addedExercisesState);
+  const [currentExercise, setCurrentExercise] =
+    useRecoilState(currentExerciseState);
   let exercises = useRecoilValue(exercisesState);
   let [isValidate, setIsValidate] = useRecoilState(isValidateState);
 
@@ -86,7 +88,7 @@ const Tab2: React.FC = (props) => {
               })}
             </ul>
             <Link
-              to="/tab3"
+              to="/add-session"
               className="btn-validate"
               style={{ textDecoration: "none", color: "white" }}
               onClick={() => {
@@ -102,4 +104,4 @@ const Tab2: React.FC = (props) => {
   );
 };
 
-export default Tab2;
+export default AddExercices;

@@ -1,16 +1,17 @@
-import {
-  IonContent,
-  IonPage,
-} from "@ionic/react";
+import { IonContent, IonPage } from "@ionic/react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../components/styles/AddSession.css";
 import { IoMdAddCircle } from "react-icons/io";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { addedExercisesState, isValidateState, titleSessionState } from "../recoil";
+import {
+  addedExercisesState,
+  isValidateState,
+  titleSessionState,
+} from "../recoil";
 import Navbar from "../components/Navbar";
 
-const Tab3: React.FC = () => {
+const AddSession: React.FC = () => {
   let [titleSession, setTitleSession] = useRecoilState(titleSessionState);
   let [isValidate] = useRecoilState(isValidateState);
   let [addedExercises, setAddedExercices] = useRecoilState(addedExercisesState);
@@ -39,7 +40,7 @@ const Tab3: React.FC = () => {
           <br />
           <h2 className="session-card-title">Ajouter vos exercices</h2>
           <Link
-            to="/tab2"
+            to="/add-exercices"
             style={{
               textDecoration: "none",
               color: "white",
@@ -52,8 +53,8 @@ const Tab3: React.FC = () => {
           </Link>
           <br />
           {isValidate && (
-          <div className="li-container">
-            <h2>Exercices choisis :</h2>
+            <div className="li-container">
+              <h2>Exercices choisis :</h2>
               <ul className="li-center">
                 {addedExercises.map((exercise) => {
                   return (
@@ -61,11 +62,11 @@ const Tab3: React.FC = () => {
                   );
                 })}
               </ul>
-          </div>
+            </div>
           )}
 
           <br />
-          <Link to="/Tab1" style={{ textDecoration: "none", color: "white" }}>
+          <Link to="/main" style={{ textDecoration: "none", color: "white" }}>
             <div className="add-session btn">
               <h2>Ajouter la séance</h2>
             </div>
@@ -76,4 +77,4 @@ const Tab3: React.FC = () => {
   );
 };
 
-export default Tab3;
+export default AddSession;

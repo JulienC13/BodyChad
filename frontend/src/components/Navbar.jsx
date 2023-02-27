@@ -9,12 +9,12 @@ const Navbar = () => {
   return (
     <div className="nav">
       <div className="nav-logo">
-        <Link to="/tab1">
+        <Link to="/main">
           <img src={logo} alt="logo" />
         </Link>
       </div>
       <HiUser size="2.5em" className="icon btn" />
-      <Link to="/tab3" style={{color:"white"}}>
+      <Link to="/add-session" style={{ color: "white" }}>
         <IoMdAddCircle size="2.5em" className="icon btn" />
       </Link>
     </div>

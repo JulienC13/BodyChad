@@ -4,27 +4,26 @@ import Navbar from "../components/Navbar.jsx";
 import { useRecoilState } from "recoil";
 import { titleSessionState } from "../recoil";
 import { Link } from "react-router-dom";
-import Tab5 from "./Tab5.jsx";
+import StartSession from "./StartSession.js";
 import { useEffect } from "react";
 import axios from "axios";
 
-const Tab1: React.FC = () => {
+const Main: React.FC = () => {
   const [titleSession, setTitleSession] = useRecoilState(titleSessionState);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/exercises").then((res) => {
+    axios.get("http://localhost:3001/sessions").then((res) => {
       console.log("res", res);
     });
   }, []);
 
-  
   return (
     <IonPage>
       <IonContent fullscreen>
         <Navbar />
         <div className="container add-session">
           <div className="top-card btn">
-            <Link to="./tab5">
+            <Link to="./start-session">
               <h2
                 className="card-title"
                 style={{ textDecoration: "none", color: "white" }}
@@ -41,4 +40,4 @@ const Tab1: React.FC = () => {
   );
 };
 
-export default Tab1;
+export default Main;
