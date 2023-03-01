@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import ALL_EXERCISES_MOCK from "./API/get-tous.json";
+import ALL_EXERCISES_MOCK from "./API/get-tous.json"; //Simule les données récupérées depuis l'API
 
 export const exercisesState = atom({
   key: "exercisesState",

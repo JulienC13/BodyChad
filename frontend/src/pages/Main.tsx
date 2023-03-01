@@ -1,10 +1,9 @@
 import { IonContent, IonPage } from "@ionic/react";
-import "../components/styles/MonApp.css";
+import "../components/styles/Main.css";
 import Navbar from "../components/Navbar.jsx";
 import { useRecoilState } from "recoil";
 import { titleSessionState } from "../recoil";
 import { Link } from "react-router-dom";
-import StartSession from "./StartSession.js";
 import { useEffect } from "react";
 import axios from "axios";
 

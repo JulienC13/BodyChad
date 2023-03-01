@@ -1,5 +1,4 @@
 import { IonContent, IonPage } from "@ionic/react";
-import { Link } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   setSecondsState,
@@ -9,7 +8,7 @@ import {
   currentExerciseState,
 } from "../recoil";
 import Navbar from "../components/Navbar";
-import anvil from "../assets/icon/enclume.png";
+// import anvil from "../assets/anvil.png"; erreur à corriger
 import { BsPlayCircleFill } from "react-icons/bs";
 import { BsPauseCircleFill } from "react-icons/bs";
 import { ImNext } from "react-icons/im";
@@ -17,7 +16,7 @@ import "../components/styles/Timer.css";
 import "../components/styles/AddSession.css";
 
 let maxSeries = 4;
-let timer;
+let timer = null;
 
 const StartSession: React.FC = () => {
   let [seconds, setSeconds] = useRecoilState(setSecondsState);
@@ -27,16 +26,17 @@ const StartSession: React.FC = () => {
   let [currentExercise, setCurrentExercise] =
     useRecoilState(currentExerciseState);
 
-  const pause = () => {
-    clearInterval(timer);
-  };
   const stop = () => {
-    pause();
     setMinutes(0);
     setSeconds(0);
   };
+
+  const pause = () => {
+    clearInterval(timer);
+  };
+
   const start = () => {
-    pause();
+    // Fonction pour démarrer le timer
     timer = setInterval(() => {
       let secondsCopy = seconds;
 
@@ -46,8 +46,6 @@ const StartSession: React.FC = () => {
       });
 
       if (secondsCopy > 58) {
-        console.log("2");
-
         setMinutes((minutes) => minutes + 1);
         setSeconds(0);
       }
@@ -55,6 +53,7 @@ const StartSession: React.FC = () => {
   };
 
   const next = () => {
+    // Fonction pour passer à l'exercice suivant et recharger la série à 0 si maxSeries est atteint
     if (series >= maxSeries) {
       stop();
       setSeries(0);
@@ -64,19 +63,25 @@ const StartSession: React.FC = () => {
       } else {
         alert("Fin de la séance");
       }
-      // verif: j'ai assez
     } else {
+      pause();
       stop();
       setSeries(series + 1);
     }
   };
 
   function reloadSerie() {
+    //fonction pour recharger la série à 0 et ajouter l'exercice suivant
     if (series === maxSeries) {
-      setSeries((series = 1));
+      setSeries((series = 0));
+      if (addedExercises.length > currentExercise + 1) {
+        setCurrentExercise((c) => c + 1);
+      }
+      pause(); // Arrête le timer pour chaque nouvel exercice
     }
   }
-  if (minutes === 2) {
+  if (minutes === 1 && seconds === 59) {
+    // Fonction pour reset le timer et ajouter une série
     setSeconds(0);
     setMinutes(0);
     setSeries(series + 1);
@@ -96,11 +101,11 @@ const StartSession: React.FC = () => {
                 </span>
               ) : (
                 <>
-                  {addedExercises[currentExercise].nom}
-
+                  <h2>{addedExercises[currentExercise].nom}</h2>
                   <img
                     style={{ height: "400px" }}
                     src={addedExercises[currentExercise].img}
+                    alt={addedExercises[currentExercise].nom}
                   />
                   <h2 className="timer-app">
                     {minutes < 10 ? "0" + minutes : minutes}:
@@ -132,15 +137,16 @@ const StartSession: React.FC = () => {
               <div className="rep-weight-container">
                 <div>
                   <input type="text" className="input" />
-                  <label> Répétitions</label>
+                  <label className="padding">Répétitions</label>
                 </div>
                 <br />
                 <br />
                 <div className="weight">
                   <input type="text" className="input" />
-                  <label className="padding"> Kg</label>
-                  <img src={anvil} alt="Enclume" className="anvil-icon" />
+                  <label className="padding">Kg</label>
+                  {/* <img src={anvil} alt="Enclume" className="anvil-icon" /> */}
                 </div>
+                <button className="btn-submit">Valider</button>
               </div>
             </div>
           </div>

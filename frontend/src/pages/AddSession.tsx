@@ -1,9 +1,8 @@
 import { IonContent, IonPage } from "@ionic/react";
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../components/styles/AddSession.css";
 import { IoMdAddCircle } from "react-icons/io";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import {
   addedExercisesState,
   isValidateState,
@@ -18,7 +17,7 @@ const AddSession: React.FC = () => {
 
   let titleChange = (e) => {
     setTitleSession(e.target.value);
-    console.log("value : ", e.target.value);
+    // console.log("value : ", e.target.value);
   };
 
   return (
@@ -52,13 +51,13 @@ const AddSession: React.FC = () => {
             </div>
           </Link>
           <br />
-          {isValidate && (
+          {isValidate && ( // si isValidate est true alors on affiche les exercices choisis
             <div className="li-container">
               <h2>Exercices choisis :</h2>
               <ul className="li-center">
                 {addedExercises.map((exercise) => {
                   return (
-                    <li style={{ paddingBottom: "10px" }}>{exercise.nom}</li>
+                    <li className="li-exercice-choice" style={{ paddingBottom: "10px" }}>{exercise.nom}</li>
                   );
                 })}
               </ul>

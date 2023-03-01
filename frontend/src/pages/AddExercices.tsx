@@ -67,15 +67,18 @@ const AddExercices: React.FC = (props) => {
             <h3>Exercices dispos</h3>
             {exercises.map((exercise) => (
               <div className="exercices-li">
-                {exercise.nom}
-                {addedExercises.find((exo) => exo.id === exercise.id) ? (
-                  <span> &#10003;</span>
+                <p>{exercise.nom}</p>
+                {addedExercises.find((exo) => exo.id === exercise.id) ? (// Si l'exercice est déjà dans la liste des exercices à ajouter on affiche un check
+                  <span style={{marginLeft: "10px"}}>&#10003;</span> 
                 ) : (
-                  <IoMdAddCircle
-                    size="1.5em"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => addExercise(exercise)}
-                  ></IoMdAddCircle>
+                  <div>
+                    <IoMdAddCircle
+                      className="btn-addExercice"
+                      size="1.5em"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => addExercise(exercise)}
+                    ></IoMdAddCircle>
+                  </div>
                 )}
               </div>
             ))}
