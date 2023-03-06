@@ -15,22 +15,26 @@ model User {
   name String?
 }
 
-model Workout {
+model Seance {
   id        Int        @id @default(autoincrement())
+  title     String
   exercises Exercise[]
-  done      Boolean    @default(false)
 }
 
 model Exercise {
-  id   Int    @id @default(autoincrement())
-  name String
+  id       Int              @id @default(autoincrement())
+  name     String
+  img      String?
+  series   ExerciseSeries[]
+  seance   Seance?          @relation(fields: [seanceId], references: [id])
+  seanceId Int?
+  done     Boolean          @default(false)
+}
 
-  repetitionsTodo Int
-  weightTodo      Int
-
-  repetitionsDone Int
-  weightDone      Int
-
-  Workout   Workout? @relation(fields: [workoutId], references: [id])
-  workoutId Int?
+model ExerciseSeries {
+  id         Int      @id @default(autoincrement())
+  exercise   Exercise @relation(fields: [exerciseId], references: [id])
+  exerciseId Int
+  reps       Int
+  weight     Int
 }

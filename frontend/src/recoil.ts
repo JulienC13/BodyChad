@@ -18,7 +18,7 @@ export const setMinutesState = atom({
 
 export const setSeriesState = atom({
   key: "setSeriesState",
-  default: 0,
+  default: 1,
 });
 
 export const isValidateState = atom({
@@ -30,12 +30,32 @@ export const titleSessionState = atom({
   key: "titleSessionState",
   default: "",
 });
-export const addedExercisesState = atom({
-  key: "addedExercisesState",
+export const addedExercisesIndexState = atom({
+  key: "addedExercisesIndexState",
   default: [],
 });
 
 export const currentExerciseState = atom({
   key: "currentExerciseState",
+  default: 0,
+});
+
+export const allSeancesState = atom({
+  key: "allSeancesState",
+  default: [],
+});
+
+export const selectedSeanceState = atom({
+  key: "selectedSeanceState",
   default: null,
+});
+
+export const addRepsState = atom({
+  key: "addRepsState",
+  default: 0,
+});
+
+export const addWeightState = atom({
+  key: "addWeightState",
+  default: 0,
 });

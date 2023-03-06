@@ -4,22 +4,39 @@ import "../components/styles/AddSession.css";
 import { IoMdAddCircle } from "react-icons/io";
 import { useRecoilState } from "recoil";
 import {
-  addedExercisesState,
+  addedExercisesIndexState,
   isValidateState,
   titleSessionState,
 } from "../recoil";
 import Navbar from "../components/Navbar";
+import axios from "axios";
 
 const AddSession: React.FC = () => {
   let [titleSession, setTitleSession] = useRecoilState(titleSessionState);
   let [isValidate] = useRecoilState(isValidateState);
-  let [addedExercises, setAddedExercices] = useRecoilState(addedExercisesState);
+  let [addedExercises, setAddedExercices] = useRecoilState(
+    addedExercisesIndexState
+  );
+
+  let addSeance = async () => {
+    try {
+      await axios.post("http://localhost:5000/seances/", {
+        title: titleSession,
+        exercises: addedExercises.map((exercise) => ({
+          name: exercise.nom,
+          img: exercise.img,
+        })),
+      });
+      window.location.reload();
+    } catch (error) {
+      console.log("error : ", error);
+    }
+  };
 
   let titleChange = (e) => {
     setTitleSession(e.target.value);
     // console.log("value : ", e.target.value);
   };
-
   return (
     <IonPage>
       <IonContent fullscreen>
@@ -57,7 +74,12 @@ const AddSession: React.FC = () => {
               <ul className="li-center">
                 {addedExercises.map((exercise) => {
                   return (
-                    <li className="li-exercice-choice" style={{ paddingBottom: "10px" }}>{exercise.nom}</li>
+                    <li
+                      className="li-exercice-choice"
+                      style={{ paddingBottom: "10px" }}
+                    >
+                      {exercise.nom}
+                    </li>
                   );
                 })}
               </ul>
@@ -65,10 +87,17 @@ const AddSession: React.FC = () => {
           )}
 
           <br />
-          <Link to="/main" style={{ textDecoration: "none", color: "white" }}>
-            <div className="add-session btn">
-              <h2>Ajouter la séance</h2>
-            </div>
+          <Link
+            to="/main"
+            style={{
+              textDecoration: "none",
+              color: "white",
+              marginTop: "30px",
+            }}
+          >
+            <button className="add-session btn" onClick={addSeance}>
+              Ajouter la séance
+            </button>
           </Link>
         </div>
       </IonContent>

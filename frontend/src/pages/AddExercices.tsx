@@ -2,7 +2,7 @@ import { IonContent, IonPage } from "@ionic/react";
 import { IoMdAddCircle } from "react-icons/io";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
-  addedExercisesState,
+  addedExercisesIndexState,
   currentExerciseState,
   exercisesState,
   isValidateState,
@@ -12,8 +12,9 @@ import Navbar from "../components/Navbar";
 import "../components/styles/AddExercises.css";
 
 const AddExercices: React.FC = (props) => {
-  const [addedExercises, setAddedExercises] =
-    useRecoilState(addedExercisesState);
+  const [addedExercises, setAddedExercises] = useRecoilState(
+    addedExercisesIndexState
+  );
   const [currentExercise, setCurrentExercise] =
     useRecoilState(currentExerciseState);
   let exercises = useRecoilValue(exercisesState);
@@ -27,35 +28,14 @@ const AddExercices: React.FC = (props) => {
     if (exeFind) {
       // Je ne fais rien
     } else {
-      // On l'ajoute
+      // On ajoute l'exercice à la liste des exercices à ajouter
       let myNewExercices = [...addedExercises, exercise];
-      // console.log("mes futurs", myNewExercices);
       setAddedExercises(myNewExercices);
       if (currentExercise === null) {
         setCurrentExercise(0);
       }
     }
   };
-
-  // let addDiv = () => {
-  //   document.getElementById("add-session").onclick = function () {
-  //     let toggle = true;
-
-  //     if (toggle === true) {
-  //       let div = document.createElement("div");
-  //       let h2 = document.createElement("h2");
-  //       let newContent = document.createTextNode("{ titleSession }");
-  //       div.className = "top-card btn";
-  //       h2.className = "card-title";
-  //       div.appendChild(h2);
-  //       h2.appendChild(newContent);
-
-  //       let currentDiv = document.getElementById("div");
-  //       document.body.insertBefore(div, currentDiv);
-  //       // Ajoute l'élément créé et son contenu dans le DOM
-  //     }
-  //   };
-  // };
 
   return (
     <IonPage>
@@ -68,8 +48,8 @@ const AddExercices: React.FC = (props) => {
             {exercises.map((exercise) => (
               <div className="exercices-li">
                 <p>{exercise.nom}</p>
-                {addedExercises.find((exo) => exo.id === exercise.id) ? (// Si l'exercice est déjà dans la liste des exercices à ajouter on affiche un check
-                  <span style={{marginLeft: "10px"}}>&#10003;</span> 
+                {addedExercises.find((exo) => exo.id === exercise.id) ? ( // Si l'exercice est déjà dans la liste des exercices à ajouter on affiche un check
+                  <span style={{ marginLeft: "10px" }}>&#10003;</span>
                 ) : (
                   <div>
                     <IoMdAddCircle

@@ -16,7 +16,7 @@ a {
   flex-direction: column;
 }
 .top-card {
-  margin: 10% auto 5%;
+  margin: 3% auto 3%;
   cursor: pointer;
   background-color: var(--sec-bg-color);
   border-radius: 30px;
@@ -42,5 +42,5 @@ a {
 }
 .card-title {
   text-align: center;
-  padding: 6%;
+  padding: 2%;
 }

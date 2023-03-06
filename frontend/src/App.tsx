@@ -5,6 +5,7 @@ import Main from "./pages/Main";
 import AddExercices from "./pages/AddExercices";
 import AddSession from "./pages/AddSession";
 import StartSession from "./pages/StartSession";
+import Performances from "./pages/Performances";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -40,8 +41,9 @@ const App: React.FC = () => (
         <Route path="/add-session">
           <AddSession />
         </Route>
-        <Route exact path="/start-session">
-          <StartSession />
+        <Route path="/start-session/:id" component={StartSession} />
+        <Route path="/performances">
+          <Performances />
         </Route>
         <Route exact path="/">
           <Redirect to="/main" />
