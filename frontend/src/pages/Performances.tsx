@@ -8,6 +8,7 @@ import {
   currentExerciseState,
   selectedSeanceState,
 } from "../recoil";
+import "../components/styles/AddSession.css";
 
 const Performances: React.FC = (props) => {
   const [selectedSeance, setSelectedSeance] =

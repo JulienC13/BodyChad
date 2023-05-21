@@ -17,7 +17,7 @@ const Main: React.FC = () => {
   const [selectedSeance, setSelectedSeance] =
     useRecoilState(selectedSeanceState);
 
-  useEffect(() => {
+  useEffect(() => { 
     axios
       .get("http://localhost:5000/seances")
       .then((res) => {
@@ -27,7 +27,7 @@ const Main: React.FC = () => {
       .catch((err) => {
         console.log("err", err);
       });
-  }, []);
+  }, []); 
 
   console.log("Seances", seances);
 

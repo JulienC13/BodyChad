@@ -6,7 +6,7 @@ import AddExercices from "./pages/AddExercices";
 import AddSession from "./pages/AddSession";
 import StartSession from "./pages/StartSession";
 import Performances from "./pages/Performances";
-
+import "./components/styles/Main.css";
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 

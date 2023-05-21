@@ -2,6 +2,9 @@
   --main-bg-color: #dc965a;
   --sec-bg-color: #b98050;
 }
+*{
+  color: white;
+}
 .session-container {
   margin: 25% auto 5%;
   width: 400px;
@@ -15,6 +18,7 @@
 }
 .session-title {
   padding-bottom: 25px;
+  color: white;
 }
 .session-card {
   padding: 25px;

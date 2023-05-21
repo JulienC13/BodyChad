@@ -2,8 +2,14 @@
   --main-bg-color: #dc965a;
   --sec-bg-color: #b98050;
 }
+
 a {
   text-decoration: none;
+}
+
+.main-background{
+  background-color: var(--main-bg-color);
+  color: white;
 }
 
 .btn:hover {

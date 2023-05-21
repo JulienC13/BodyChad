@@ -6,13 +6,13 @@ import { HiUser } from "react-icons/hi";
 import { IoMdAddCircle } from "react-icons/io";
 
 const Navbar = () => {
-  const handleLogoClick = () => {
-    window.location.reload(); // Actualise la page
-  };
+  // const handleLogoClick = () => {
+  //   window.location.reload(); // Actualise la page
+  // };
   return (
     <div className="nav">
       <div className="nav-logo">
-        <Link to="/main" onClick={handleLogoClick}>
+        <Link to="/main" /*onClick={handleLogoClick}*/>
           <img src={logo} alt="logo" />
         </Link>
       </div>

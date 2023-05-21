@@ -38,7 +38,6 @@ app.get("/seances", async (req, res) => {
 app.post("/seances", async (req, res) => {
   // 1. prendre la data
   const data = req.body;
-
   console.log(data.exercises);
   // 2. l'ajouter en base de donnee
   const seance = await prisma.seance.create({
