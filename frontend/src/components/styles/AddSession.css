@@ -2,11 +2,11 @@
   --main-bg-color: #dc965a;
   --sec-bg-color: #b98050;
 }
-*{
+* {
   color: white;
 }
 .session-container {
-  margin: 25% auto 5%;
+  margin: 50% auto 5%;
   width: 400px;
   padding: 50px;
   display: flex;
@@ -55,7 +55,7 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
 }
 .add-session {
-  padding: 10px;
+  padding: 20px;
   cursor: pointer;
   background-color: var(--main-bg-color);
   border-radius: 30px;

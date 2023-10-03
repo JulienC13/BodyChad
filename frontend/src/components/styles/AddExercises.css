@@ -50,7 +50,7 @@
 .btn-validate {
   height: 50px;
   width: 150px;
-  padding: 5px;
+  padding: 15px;
   cursor: pointer;
   background-color: var(--sec-bg-color);
   border-radius: 30px;

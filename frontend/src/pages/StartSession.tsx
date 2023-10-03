@@ -1,4 +1,4 @@
-import { IonContent, IonPage } from "@ionic/react";
+import { IonContent, IonPage, useIonRouter } from "@ionic/react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   setSecondsState,
@@ -9,6 +9,7 @@ import {
   selectedSeanceState,
   addRepsState,
   addWeightState,
+  addTimeState,
 } from "../recoil";
 import Navbar from "../components/Navbar";
 // import anvil from "../assets/icon/enclume.png";
@@ -35,6 +36,8 @@ const StartSession: React.FC = () => {
     useRecoilState(selectedSeanceState);
   let [addReps, setAddReps] = useRecoilState(addRepsState);
   let [addWeight, setAddWeight] = useRecoilState(addWeightState);
+  const [timerStarted, setTimerStarted] = useRecoilState(addTimeState);
+  const ionRouter = useIonRouter();
 
   let params: any = useParams();
 
@@ -79,9 +82,18 @@ const StartSession: React.FC = () => {
 
   const pause = () => {
     clearInterval(timer);
+    setTimerStarted(false);
   };
 
   const start = () => {
+    // Vérifie si le timer est déjà en cours
+    if (timerStarted) {
+      return; // Sort de la fonction si le timer est déjà en cours
+    }
+
+    // Mets à jour le flag pour indiquer que le timer a démarré
+    setTimerStarted(true);
+
     // Fonction pour démarrer le timer
     timer = setInterval(() => {
       let secondsCopy = seconds;
@@ -117,11 +129,12 @@ const StartSession: React.FC = () => {
         //curentExercise est mon ajout de nouveau tableau
       } else {
         alert("Fin de la séance");
+        ionRouter.push("/main");
       }
     } else {
       pause();
       stop();
-      setSeries(series + 1); //useffect setseries axios post
+      setSeries(series + 1); 
     }
   };
 

@@ -35,7 +35,7 @@ const Main: React.FC = () => {
     <IonPage>
       <IonContent fullscreen>
         <Navbar />
-        <div className="container add-session">
+        <div className="container">
           {seances.map((seance) => (
             <Link key={seance.id} to={`/start-session/${seance.id}`}>
               <div className="top-card btn card-title">

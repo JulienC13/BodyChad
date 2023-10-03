@@ -59,3 +59,8 @@ export const addWeightState = atom({
   key: "addWeightState",
   default: 0,
 });
+
+export const addTimeState = atom({
+  key: "addTimeState",
+  default: false,
+});
